@@ -1,0 +1,12 @@
+[package]
+name = "verinc"
+description = "Verinc is a small command line utility (and a library) which increments version in the given file."
+authors = ["Jiri Pospisil <jiri@jpospisil.com>"]
+license = "MIT"
+keywords = ["semver"]
+repository = "https://github.com/jiripospisil/verinc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1.9.5"
