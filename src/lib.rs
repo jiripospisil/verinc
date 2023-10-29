@@ -1,5 +1,5 @@
 //! Verinc is a small command line utility (and a library) which increments version
-//! numbers in the given file. The primary use case for this is maintanance of my
+//! numbers in the given file. The primary use case for this is maintenance of my
 //! Arch Linux packages.
 
 use regex::{Regex, Replacer};
