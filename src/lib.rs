@@ -97,11 +97,11 @@ mod tests {
 
     #[test]
     fn patch() {
-        assert_eq!(inc("1.0.0", Position::Nth(1), Version::Patch), "1.0.1");
+        assert_eq!(inc("1.0.0", Position::Nth(0), Version::Patch), "1.0.1");
         assert_eq!(inc("1.0.0", Position::All, Version::Patch), "1.0.1");
 
         assert_eq!(
-            inc("1.0.0 foo 1.0.0", Position::Nth(1), Version::Patch),
+            inc("1.0.0 foo 1.0.0", Position::Nth(0), Version::Patch),
             "1.0.1 foo 1.0.0"
         );
         assert_eq!(
@@ -110,20 +110,20 @@ mod tests {
         );
 
         assert_eq!(
-            inc("1.0.0 1.0.0", Position::Nth(2), Version::Patch),
+            inc("1.0.0 1.0.0", Position::Nth(1), Version::Patch),
             "1.0.0 1.0.1"
         );
     }
 
     #[test]
     fn minor() {
-        assert_eq!(inc("1.0.0", Position::Nth(1), Version::Minor), "1.1.0");
-        assert_eq!(inc("1.0.1", Position::Nth(1), Version::Minor), "1.1.0");
+        assert_eq!(inc("1.0.0", Position::Nth(0), Version::Minor), "1.1.0");
+        assert_eq!(inc("1.0.1", Position::Nth(0), Version::Minor), "1.1.0");
         assert_eq!(inc("1.0.0", Position::All, Version::Minor), "1.1.0");
         assert_eq!(inc("1.0.1", Position::All, Version::Minor), "1.1.0");
 
         assert_eq!(
-            inc("1.0.0 1.0.0", Position::Nth(1), Version::Minor),
+            inc("1.0.0 1.0.0", Position::Nth(0), Version::Minor),
             "1.1.0 1.0.0"
         );
         assert_eq!(
@@ -131,7 +131,7 @@ mod tests {
             "1.1.0 1.1.0"
         );
         assert_eq!(
-            inc("1.0.1 1.0.2", Position::Nth(1), Version::Minor),
+            inc("1.0.1 1.0.2", Position::Nth(0), Version::Minor),
             "1.1.0 1.0.2"
         );
         assert_eq!(
@@ -140,20 +140,20 @@ mod tests {
         );
 
         assert_eq!(
-            inc("1.0.0 1.2.1", Position::Nth(2), Version::Minor),
+            inc("1.0.0 1.2.1", Position::Nth(1), Version::Minor),
             "1.0.0 1.3.0"
         );
     }
 
     #[test]
     fn major() {
-        assert_eq!(inc("1.0.0", Position::Nth(1), Version::Major), "2.0.0");
-        assert_eq!(inc("1.0.1", Position::Nth(1), Version::Major), "2.0.0");
+        assert_eq!(inc("1.0.0", Position::Nth(0), Version::Major), "2.0.0");
+        assert_eq!(inc("1.0.1", Position::Nth(0), Version::Major), "2.0.0");
         assert_eq!(inc("1.0.0", Position::All, Version::Major), "2.0.0");
         assert_eq!(inc("1.0.1", Position::All, Version::Major), "2.0.0");
 
         assert_eq!(
-            inc("1.0.0 1.0.0", Position::Nth(1), Version::Major),
+            inc("1.0.0 1.0.0", Position::Nth(0), Version::Major),
             "2.0.0 1.0.0"
         );
         assert_eq!(
@@ -161,7 +161,7 @@ mod tests {
             "2.0.0 2.0.0"
         );
         assert_eq!(
-            inc("3.0.1 1.0.2", Position::Nth(1), Version::Major),
+            inc("3.0.1 1.0.2", Position::Nth(0), Version::Major),
             "4.0.0 1.0.2"
         );
         assert_eq!(
@@ -170,7 +170,7 @@ mod tests {
         );
 
         assert_eq!(
-            inc("1.0.0 1.2.1", Position::Nth(2), Version::Major),
+            inc("1.0.0 1.2.1", Position::Nth(1), Version::Major),
             "1.0.0 2.0.0"
         );
     }
@@ -178,8 +178,8 @@ mod tests {
     #[test]
     fn leading_zeros() {
         assert_eq!(
-            inc("1.01.0 12.13.14", Position::Nth(1), Version::Major),
-            "1.01.0 12.14.0"
+            inc("1.01.0 12.13.14", Position::Nth(0), Version::Major),
+            "1.01.0 13.0.0"
         );
     }
 
@@ -188,8 +188,8 @@ mod tests {
         assert_eq!(
             inc(
                 "1.1.0\nhello\nworld\n12.13.14",
-                Position::Nth(2),
-                Version::Major
+                Position::Nth(1),
+                Version::Minor
             ),
             "1.1.0\nhello\nworld\n12.14.0"
         );
