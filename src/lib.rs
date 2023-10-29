@@ -43,6 +43,10 @@ impl Replacer for Replace {
         if matches!(self.position, Position::Nth(n) if n == self.idx)
             || matches!(self.position, Position::All)
         {
+            let old_major = major;
+            let old_minor = minor;
+            let old_path = patch;
+
             match self.version {
                 Version::Major => {
                     major += 1;
@@ -55,6 +59,8 @@ impl Replacer for Replace {
                 }
                 Version::Patch => patch += 1,
             }
+
+            println!("{old_major}.{old_minor}.{old_path} -> {major}.{minor}.{patch}");
         }
 
         self.idx += 1;
