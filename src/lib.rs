@@ -2,6 +2,8 @@
 //! numbers in the given file. The primary use case for this is maintenance of my
 //! Arch Linux packages.
 
+use std::io::{stdout, IsTerminal};
+
 use regex::{Regex, Replacer};
 
 #[derive(Debug)]
@@ -60,7 +62,9 @@ impl Replacer for Replace {
                 Version::Patch => patch += 1,
             }
 
-            println!("{old_major}.{old_minor}.{old_path} -> {major}.{minor}.{patch}");
+            if stdout().is_terminal() {
+                println!("{old_major}.{old_minor}.{old_path} -> {major}.{minor}.{patch}");
+            }
         }
 
         self.idx += 1;
